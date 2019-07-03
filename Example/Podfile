@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'WFBasics_Example' do
+  pod 'WFBasics', :path => '../'
+
+  target 'WFBasics_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
