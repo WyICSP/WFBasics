@@ -1,0 +1,52 @@
+{
+  "name": "WFBasics",
+  "version": "0.1.0",
+  "summary": "WFBasics基础组件",
+  "description": "WFBasics是云智充项目的基础组件",
+  "homepage": "https://github.com/WyICSP/WFBasics",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wyxlh": "wy_wangyu163@163.com"
+  },
+  "source": {
+    "git": "https://github.com/WyICSP/WFBasics.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "resource_bundles": {
+    "WFBasics": [
+      "WFBasics/Assets/*.png"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Category",
+      "source_files": "WFBasics/Classes/Category/**/*"
+    },
+    {
+      "name": "Utils",
+      "source_files": "WFBasics/Classes/Utils/**/*"
+    },
+    {
+      "name": "WKRequest",
+      "source_files": "WFBasics/Classes/WKRequest/**/*",
+      "dependencies": {
+        "AFNetworking": [
+
+        ],
+        "SVProgressHUD": [
+
+        ]
+      }
+    },
+    {
+      "name": "MediatorManager",
+      "source_files": "WFBasics/Classes/MediatorManager/**/*"
+    }
+  ]
+}

@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'WFBasics'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of WFBasics.'
+  s.summary          = 'WFBasics基础组件'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,23 +18,47 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+WFBasics是云智充项目的基础组件
                        DESC
 
-  s.homepage         = 'https://github.com/wyxlh/WFBasics'
+  s.homepage         = 'https://github.com/WyICSP/WFBasics'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'wyxlh' => 'wy_wangyu163@163.com' }
-  s.source           = { :git => 'https://github.com/wyxlh/WFBasics.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/WyICSP/WFBasics.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
-  s.source_files = 'WFBasics/Classes/**/*'
+  #s.source_files = 'WFBasics/Classes/**/*'
   
   # s.resource_bundles = {
   #   'WFBasics' => ['WFBasics/Assets/*.png']
   # }
+
+  s.subspec 'Category' do |b|
+  b.source_files    = 'WFBasics/Classes/Category/**/*'
+  end
+
+  s.subspec 'Utils' do |c|
+  c.source_files    = 'WFBasics/Classes/Utils/**/*'
+  end
+
+  s.subspec 'WKRequest' do |d|
+  d.source_files    = 'WFBasics/Classes/WKRequest/**/*'
+  d.dependency 'AFNetworking'
+  d.dependency 'SVProgressHUD'
+  end
+
+  s.subspec 'MediatorManager' do |e|
+  e.source_files    = 'WFBasics/Classes/MediatorManager/**/*'
+  end
+
+
+
+  s.resource_bundles = {
+  'WFBasics' => ['WFBasics/Assets/*.png']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

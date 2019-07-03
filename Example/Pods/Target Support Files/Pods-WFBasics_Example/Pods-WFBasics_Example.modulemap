@@ -1,0 +1,6 @@
+framework module Pods_WFBasics_Example {
+  umbrella header "Pods-WFBasics_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
