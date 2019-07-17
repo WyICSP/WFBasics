@@ -30,35 +30,14 @@ WFBasics是云智充项目的基础组件
 
   s.ios.deployment_target = '9.0'
 
-  #s.source_files = 'WFBasics/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'WFBasics' => ['WFBasics/Assets/*.png']
-  # }
-
-  s.subspec 'Category' do |b|
-  b.source_files    = 'WFBasics/Classes/Category/**/*'
-  end
-
-  s.subspec 'WKRequest&Tools' do |d|
-  d.source_files    = 'WFBasics/Classes/WKRequest&Tools/**/*'
-  d.dependency 'AFNetworking'
-  d.dependency 'SVProgressHUD'
-  end
-
-  s.subspec 'MediatorManager' do |e|
-  e.source_files    = 'WFBasics/Classes/MediatorManager/**/*'
-  end
-
-  s.subspec 'Config' do |f|
-  f.source_files    = 'WFBasics/Classes/Config/**/*'
-  end
-
-
+  s.source_files = 'WFBasics/Classes/**/*'
 
   s.resource_bundles = {
   'WFBasics' => ['WFBasics/Assets/*.png']
   }
+  
+  s.dependency 'AFNetworking'
+  s.dependency 'SVProgressHUD'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

@@ -18,35 +18,18 @@
   "platforms": {
     "ios": "9.0"
   },
+  "source_files": "WFBasics/Classes/**/*",
   "resource_bundles": {
     "WFBasics": [
       "WFBasics/Assets/*.png"
     ]
   },
-  "subspecs": [
-    {
-      "name": "Category",
-      "source_files": "WFBasics/Classes/Category/**/*"
-    },
-    {
-      "name": "WKRequest&Tools",
-      "source_files": "WFBasics/Classes/WKRequest&Tools/**/*",
-      "dependencies": {
-        "AFNetworking": [
+  "dependencies": {
+    "AFNetworking": [
 
-        ],
-        "SVProgressHUD": [
+    ],
+    "SVProgressHUD": [
 
-        ]
-      }
-    },
-    {
-      "name": "MediatorManager",
-      "source_files": "WFBasics/Classes/MediatorManager/**/*"
-    },
-    {
-      "name": "Config",
-      "source_files": "WFBasics/Classes/Config/**/*"
-    }
-  ]
+    ]
+  }
 }

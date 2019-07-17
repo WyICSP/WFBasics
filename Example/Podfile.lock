@@ -16,14 +16,6 @@ PODS:
     - AFNetworking/NSURLSession
   - SVProgressHUD (2.2.5)
   - WFBasics (0.1.1):
-    - WFBasics/Category (= 0.1.1)
-    - WFBasics/Config (= 0.1.1)
-    - WFBasics/MediatorManager (= 0.1.1)
-    - "WFBasics/WKRequest&Tools (= 0.1.1)"
-  - WFBasics/Category (0.1.1)
-  - WFBasics/Config (0.1.1)
-  - WFBasics/MediatorManager (0.1.1)
-  - "WFBasics/WKRequest&Tools (0.1.1)":
     - AFNetworking
     - SVProgressHUD
 
@@ -42,7 +34,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  WFBasics: 5a3ece8ae41d9f4fe7f2724fc92ffbea137051db
+  WFBasics: c354341d46a787e1b943404ad45f05bf51045a0b
 
 PODFILE CHECKSUM: 11a8dda35c00ad3a2eb8f49162be0cefe7c0e70c
 
