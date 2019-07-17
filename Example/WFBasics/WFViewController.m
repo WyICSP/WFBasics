@@ -7,6 +7,7 @@
 //
 
 #import "WFViewController.h"
+#import "WKRequest.h"
 
 @interface WFViewController ()
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [WKRequest postWithURLString:@"" parameters:@{} isJson:YES isShowHud:YES success:^(WKBaseModel *baseModel) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

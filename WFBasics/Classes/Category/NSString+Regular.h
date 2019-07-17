@@ -13,14 +13,14 @@
 @interface NSString (Regular)
 
 /**
-*  移除空格
-*/
+ *  移除空格
+ */
 -(NSString *)removeWhiteSpace;
 
 -(NSString *)removeWhiteline;
 /**
  计算文字宽高
-
+ 
  @param fontSize fontSize description
  @param str str description
  @param width width description
@@ -33,7 +33,7 @@
 
 /**
  //邮箱
-
+ 
  @param email email description
  @return return value description
  */
@@ -41,7 +41,7 @@
 
 /**
  //手机号码验证
-
+ 
  @param mobile mobile description
  @return return value description
  */
@@ -55,7 +55,7 @@
 
 /**
  用户名
-
+ 
  @param name name description
  @return return value description
  */
@@ -75,6 +75,14 @@
  */
 + (BOOL) validatePassword:(NSString *)passWord;
 
+
+/**
+ 是否包含特殊字符
+ 
+ @param content 内容
+ @return yes 包含, no 不包含
+ */
++ (BOOL)JudgeTheillegalCharacter:(NSString *)content;
 
 /**
  *  //昵称
@@ -106,6 +114,11 @@
  
  */
 +(NSString *)fomartDate:(NSString *)Date;
+
+/**
+ 获取当前时间
+ */
++ (NSString *)getCurrentDate:(NSDate *)date;
 
 
 /**
@@ -156,7 +169,7 @@
 
 /**
  护照
-
+ 
  */
 + (BOOL) isValidPassport:(NSString*)value;
 
@@ -225,6 +238,11 @@
 + (NSString *)getAddressAraeString:(NSString *)arae;
 
 /**
+ 获取手机的 UUID
+ */
++ (NSString*)getEquipmentUUID;
+
+/**
  替换字符串
  @param replaceBefore 需要替换的string
  @param needReplaceString 需要替换的东西
@@ -245,5 +263,28 @@
 + (NSString *)getImagePathWithCurrentBundler:(NSBundle *)currentBundler
                                    PhotoName:(NSString *)photoName
                                  bundlerName:(NSString *)bundlerName;
+
+/**
+ 获取时间戳
+ 
+ @return getNowTimeTimestamp
+ */
++(NSString *)getNowTimeTimestamp;
+
+
+/**
+ 传入一个时间戳
+ 
+ @return 返回一个时间
+ */
++ (NSString *)getNowTimeStampDate:(NSString *)timeStamp;
+
+
+/**
+ 获取手机型号
+ 
+ @return getCurrentDeviceModel
+ */
++ (NSString *)getCurrentDeviceModel;
 
 @end

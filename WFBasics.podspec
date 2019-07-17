@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WFBasics'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'WFBasics基础组件'
 
 # This description is used to generate tags and improve search results.
@@ -40,8 +40,8 @@ WFBasics是云智充项目的基础组件
   b.source_files    = 'WFBasics/Classes/Category/**/*'
   end
 
-  s.subspec 'Utils' do |c|
-  c.source_files    = 'WFBasics/Classes/Utils/**/*'
+  s.subspec 'Tools' do |c|
+  c.source_files    = 'WFBasics/Classes/Tools/**/*'
   end
 
   s.subspec 'WKRequest' do |d|
@@ -52,6 +52,10 @@ WFBasics是云智充项目的基础组件
 
   s.subspec 'MediatorManager' do |e|
   e.source_files    = 'WFBasics/Classes/MediatorManager/**/*'
+  end
+
+  s.subspec 'Config' do |f|
+  f.source_files    = 'WFBasics/Classes/Config/**/*'
   end
 
 

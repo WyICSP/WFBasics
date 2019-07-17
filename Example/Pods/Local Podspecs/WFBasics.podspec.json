@@ -1,6 +1,6 @@
 {
   "name": "WFBasics",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "WFBasics基础组件",
   "description": "WFBasics是云智充项目的基础组件",
   "homepage": "https://github.com/WyICSP/WFBasics",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/WyICSP/WFBasics.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -29,8 +29,8 @@
       "source_files": "WFBasics/Classes/Category/**/*"
     },
     {
-      "name": "Utils",
-      "source_files": "WFBasics/Classes/Utils/**/*"
+      "name": "Tools",
+      "source_files": "WFBasics/Classes/Tools/**/*"
     },
     {
       "name": "WKRequest",
@@ -47,6 +47,10 @@
     {
       "name": "MediatorManager",
       "source_files": "WFBasics/Classes/MediatorManager/**/*"
+    },
+    {
+      "name": "Config",
+      "source_files": "WFBasics/Classes/Config/**/*"
     }
   ]
 }

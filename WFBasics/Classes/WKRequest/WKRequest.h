@@ -30,35 +30,21 @@ typedef void(^FailureBlock)(NSError *error);
 
 /**
  get 请求
-
+ 
  @param urlString 请求地址
  @param parameters 请求参数
  @param successBlock 请求成功回调
  @param failureBlock 请求失败回调
  */
 + (void)getWithURLString:(NSString *)urlString
-             parameters:(id)parameters
+              parameters:(id)parameters
                isShowHud:(BOOL)isShowHud
-                success:(SuccessBlock)successBlock
-                failure:(FailureBlock)failureBlock;
-
-/**
-  get 请求  请求注册协议
-
- @param urlString 请求地址
- @param parameters 请求参数
- @param successBlock 请求成功回调
- @param failureBlock 请求失败回调
- */
-+ (void)getRegisterWithURLString:(NSString *)urlString
-                     parameters:(id)parameters
-                       isShowHud:(BOOL)isShowHud
-                        success:(void(^)(NSString *))successBlock
-                        failure:(FailureBlock)failureBlock;
+                 success:(SuccessBlock)successBlock
+                 failure:(FailureBlock)failureBlock;
 
 /**
  post 请求
-
+ 
  @param urlString 请求地址
  @param parameters 请求参数
  @param isJson    YES为Json  NO 不是 json
@@ -66,16 +52,16 @@ typedef void(^FailureBlock)(NSError *error);
  @param failureBlock 请求失败回调
  */
 + (void)postWithURLString:(NSString *)urlString
-              parameters:(id)parameters
-                  isJson:(BOOL)isJson
+               parameters:(id)parameters
+                   isJson:(BOOL)isJson
                 isShowHud:(BOOL)isShowHud
-                 success:(SuccessBlock)successBlock
-                 failure:(FailureBlock)failureBlock;
+                  success:(SuccessBlock)successBlock
+                  failure:(FailureBlock)failureBlock;
 
 
 /**
  post 请求上传图片
-
+ 
  @param urlString 请求地址
  @param parameters 请求参数
  @param successBlock 请求成功回调

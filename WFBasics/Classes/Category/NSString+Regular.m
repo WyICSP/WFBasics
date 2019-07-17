@@ -9,6 +9,8 @@
 #import "NSString+Regular.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
+#import <sys/utsname.h>//要导入头文件
+
 @implementation NSString (Regular)
 //移除空格
 -(NSString *)removeWhiteSpace
@@ -38,6 +40,9 @@
     int val;
     return[scan scanInt:&val] && [scan isAtEnd];
 }
+
+
+
 //邮箱
 + (BOOL) validateEmail:(NSString *)email
 {
@@ -141,6 +146,16 @@
     
 }
 
++ (BOOL)JudgeTheillegalCharacter:(NSString *)content {
+    //提示 标签不能输入特殊字符
+    NSString *str =@"^[A-Za-z0-9\\u4e00-\u9fa5]+$";
+    NSPredicate* emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", str];
+    if (![emailTest evaluateWithObject:content]) {
+        return YES;
+    }
+    return NO;
+}
+
 
 //昵称
 + (BOOL) validateNickname:(NSString *)nickname{
@@ -178,12 +193,22 @@
 
 //格式化时间
 +(NSString *)fomartDate:(NSString *)Date{
-    long long time=[Date doubleValue];
-    NSDate *nd = [NSDate dateWithTimeIntervalSince1970:time];
+    //    long long time=[Date doubleValue];
+    //    NSDate *nd = [NSDate dateWithTimeIntervalSince1970:time];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy/MM/dd"];
-    NSString *dateString = [dateFormat stringFromDate:nd];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFormat dateFromString:Date];
+    NSString *dateString = [dateFormat stringFromDate:date];
     return dateString;
+}
+
+
+//获取当前时间
++ (NSString *)getCurrentDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *strDate = [dateFormatter stringFromDate:date];
+    return strDate;
 }
 
 /**
@@ -295,7 +320,7 @@
 }
 //判断是否为弱密码
 -(BOOL)weakPswd{
-    NSString *pswdEx =@"^(?=.*\\d.*)(?=.*[a-zA-Z].*).{6,15}$";
+    NSString *pswdEx =@"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,15}$";
     NSPredicate *regExPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pswdEx];
     return [regExPredicate evaluateWithObject:self];
 }
@@ -431,7 +456,7 @@
 + (NSString *)getAppVersion{
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     // app名称
-//    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    //    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     return app_Version;
@@ -504,13 +529,13 @@
     NSInteger seconds = [totalTime integerValue];
     
     //format of hour
-//    NSString *str_hour = [NSString stringWithFormat:@"%02ld",seconds/3600];
+    NSString *str_hour = [NSString stringWithFormat:@"%02ld",(long)seconds/3600];
     //format of minute
     NSString *str_minute = [NSString stringWithFormat:@"%02ld",(long)(seconds%3600)/60];
     //format of second
     NSString *str_second = [NSString stringWithFormat:@"%02ld",(long)seconds%60];
     //format of time
-    NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
+    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
     
     return format_time;
 }
@@ -579,6 +604,37 @@
 }
 
 /**
+ 获取手机的 UUID
+ */
++ (NSString*)getEquipmentUUID {
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    static NSString* UUID_KEY = @"MPUUID";
+    
+    NSString* app_uuid = [userDefaults stringForKey:UUID_KEY];
+    
+    if (app_uuid == nil) {
+        
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        
+        CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+        
+        app_uuid = [NSString stringWithString:(__bridge NSString*)uuidString];
+        
+        [userDefaults setObject:app_uuid forKey:UUID_KEY];
+        
+        [userDefaults synchronize];
+        
+        CFRelease(uuidString);
+        
+        CFRelease(uuidRef);
+        
+    }
+    return app_uuid;
+}
+
+/**
  替换字符串
  */
 
@@ -604,6 +660,139 @@
     //得到图片的路径
     NSString *imgPath = [currentBundler pathForResource:imgName ofType:nil inDirectory:bundlerName];
     return imgPath;
+}
+
+/**
+ 获取时间戳
+ 
+ @return getNowTimeTimestamp
+ */
++(NSString *)getNowTimeTimestamp{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss SSS"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    //设置时区,这个对于时间的处理有时很重要
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    [formatter setTimeZone:timeZone];
+    
+    NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
+    
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]*1000];
+    
+    return timeSp;
+}
+
+/**
+ 传入一个时间戳
+ 
+ @return 返回一个时间
+ */
++ (NSString *)getNowTimeStampDate:(NSString *)timeStamp {
+    // iOS 生成的时间戳是10位
+    NSTimeInterval interval    =[timeStamp doubleValue] / 1000.0;
+    NSDate *date               = [NSDate dateWithTimeIntervalSince1970:interval];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString       = [formatter stringFromDate: date];
+    return dateString;
+}
+
+/**
+ 获取手机型号
+ 
+ @return getCurrentDeviceModel
+ */
++ (NSString *)getCurrentDeviceModel {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+    
+    
+    if ([deviceModel isEqualToString:@"iPhone3,1"])    return @"iPhone 4";
+    if ([deviceModel isEqualToString:@"iPhone3,2"])    return @"iPhone 4";
+    if ([deviceModel isEqualToString:@"iPhone3,3"])    return @"iPhone 4";
+    if ([deviceModel isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
+    if ([deviceModel isEqualToString:@"iPhone5,1"])    return @"iPhone 5";
+    if ([deviceModel isEqualToString:@"iPhone5,2"])    return @"iPhone 5 (GSM+CDMA)";
+    if ([deviceModel isEqualToString:@"iPhone5,3"])    return @"iPhone 5c (GSM)";
+    if ([deviceModel isEqualToString:@"iPhone5,4"])    return @"iPhone 5c (GSM+CDMA)";
+    if ([deviceModel isEqualToString:@"iPhone6,1"])    return @"iPhone 5s (GSM)";
+    if ([deviceModel isEqualToString:@"iPhone6,2"])    return @"iPhone 5s (GSM+CDMA)";
+    if ([deviceModel isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
+    if ([deviceModel isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
+    if ([deviceModel isEqualToString:@"iPhone8,1"])    return @"iPhone 6s";
+    if ([deviceModel isEqualToString:@"iPhone8,2"])    return @"iPhone 6s Plus";
+    if ([deviceModel isEqualToString:@"iPhone8,4"])    return @"iPhone SE";
+    // 日行两款手机型号均为日本独占，可能使用索尼FeliCa支付方案而不是苹果支付
+    if ([deviceModel isEqualToString:@"iPhone9,1"])    return @"iPhone 7";
+    if ([deviceModel isEqualToString:@"iPhone9,2"])    return @"iPhone 7 Plus";
+    if ([deviceModel isEqualToString:@"iPhone9,3"])    return @"iPhone 7";
+    if ([deviceModel isEqualToString:@"iPhone9,4"])    return @"iPhone 7 Plus";
+    if ([deviceModel isEqualToString:@"iPhone10,1"])   return @"iPhone_8";
+    if ([deviceModel isEqualToString:@"iPhone10,4"])   return @"iPhone_8";
+    if ([deviceModel isEqualToString:@"iPhone10,2"])   return @"iPhone_8_Plus";
+    if ([deviceModel isEqualToString:@"iPhone10,5"])   return @"iPhone_8_Plus";
+    if ([deviceModel isEqualToString:@"iPhone10,3"])   return @"iPhone X";
+    if ([deviceModel isEqualToString:@"iPhone10,6"])   return @"iPhone X";
+    if ([deviceModel isEqualToString:@"iPhone11,8"])   return @"iPhone XR";
+    if ([deviceModel isEqualToString:@"iPhone11,2"])   return @"iPhone XS";
+    if ([deviceModel isEqualToString:@"iPhone11,6"])   return @"iPhone XS Max";
+    if ([deviceModel isEqualToString:@"iPhone11,4"])   return @"iPhone XS Max";
+    if ([deviceModel isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
+    if ([deviceModel isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
+    if ([deviceModel isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
+    if ([deviceModel isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
+    if ([deviceModel isEqualToString:@"iPod5,1"])      return @"iPod Touch (5 Gen)";
+    if ([deviceModel isEqualToString:@"iPad1,1"])      return @"iPad";
+    if ([deviceModel isEqualToString:@"iPad1,2"])      return @"iPad 3G";
+    if ([deviceModel isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad2,2"])      return @"iPad 2";
+    if ([deviceModel isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
+    if ([deviceModel isEqualToString:@"iPad2,4"])      return @"iPad 2";
+    if ([deviceModel isEqualToString:@"iPad2,5"])      return @"iPad Mini (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad2,6"])      return @"iPad Mini";
+    if ([deviceModel isEqualToString:@"iPad2,7"])      return @"iPad Mini (GSM+CDMA)";
+    if ([deviceModel isEqualToString:@"iPad3,1"])      return @"iPad 3 (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad3,2"])      return @"iPad 3 (GSM+CDMA)";
+    if ([deviceModel isEqualToString:@"iPad3,3"])      return @"iPad 3";
+    if ([deviceModel isEqualToString:@"iPad3,4"])      return @"iPad 4 (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad3,5"])      return @"iPad 4";
+    if ([deviceModel isEqualToString:@"iPad3,6"])      return @"iPad 4 (GSM+CDMA)";
+    if ([deviceModel isEqualToString:@"iPad4,1"])      return @"iPad Air (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad4,2"])      return @"iPad Air (Cellular)";
+    if ([deviceModel isEqualToString:@"iPad4,4"])      return @"iPad Mini 2 (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad4,5"])      return @"iPad Mini 2 (Cellular)";
+    if ([deviceModel isEqualToString:@"iPad4,6"])      return @"iPad Mini 2";
+    if ([deviceModel isEqualToString:@"iPad4,7"])      return @"iPad Mini 3";
+    if ([deviceModel isEqualToString:@"iPad4,8"])      return @"iPad Mini 3";
+    if ([deviceModel isEqualToString:@"iPad4,9"])      return @"iPad Mini 3";
+    if ([deviceModel isEqualToString:@"iPad5,1"])      return @"iPad Mini 4 (WiFi)";
+    if ([deviceModel isEqualToString:@"iPad5,2"])      return @"iPad Mini 4 (LTE)";
+    if ([deviceModel isEqualToString:@"iPad5,3"])      return @"iPad Air 2";
+    if ([deviceModel isEqualToString:@"iPad5,4"])      return @"iPad Air 2";
+    if ([deviceModel isEqualToString:@"iPad6,3"])      return @"iPad Pro 9.7";
+    if ([deviceModel isEqualToString:@"iPad6,4"])      return @"iPad Pro 9.7";
+    if ([deviceModel isEqualToString:@"iPad6,7"])      return @"iPad Pro 12.9";
+    if ([deviceModel isEqualToString:@"iPad6,8"])      return @"iPad Pro 12.9";
+    
+    if ([deviceModel isEqualToString:@"AppleTV2,1"])      return @"Apple TV 2";
+    if ([deviceModel isEqualToString:@"AppleTV3,1"])      return @"Apple TV 3";
+    if ([deviceModel isEqualToString:@"AppleTV3,2"])      return @"Apple TV 3";
+    if ([deviceModel isEqualToString:@"AppleTV5,3"])      return @"Apple TV 4";
+    
+    if ([deviceModel isEqualToString:@"i386"])         return @"Simulator";
+    if ([deviceModel isEqualToString:@"x86_64"])       return @"Simulator";
+    return deviceModel;
 }
 
 
