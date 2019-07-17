@@ -11,20 +11,30 @@
 #define DLog( s, ... )
 #endif
 
+//加密公钥
+#define  RSA_Public_Key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDKElEBrpz7lY7ADUqDKusCKWLrYHYmRNX5EM1tW8fyu3oRQHiNQqCzviI9W89e5k+v/48oGfA/wr5xlnXjr8ZEgZ4BXQU5qpGP1qzsX9S6MU/wHM2GFadkkXLwx2d/cP4Wvg35pOQmkXCIT+B2LaFBIx070B19XmY9NhIvly9VTwIDAQAB"
+//加密常量
+#define RSA_CONS_KEY @"502880496058fbb7016068fc201e0019"
+
+//项目名
+#define APP_NAME ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"])
+//版本号
+#define APP_VERSION ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"])
+
 #define TIMEOUT 15
 #define ERROE @"请检查网络连接"
 
 #import "WKRequest.h"
 #import <AFNetworking/AFNetworking.h>
 #import "SVProgressHUD+YFHud.h"
+
+#import "YFKeyWindow.h"
+#import "NSString+Regular.h"
 #import "WFLocationTools.h"
 #import "RSAEncryptor.h"
-#import "NSString+Regular.h"
 #import "Reachability.h"
-#import "YFKeyWindow.h"
 #import "UserData.h"
 #import "YFToast.h"
-#import "WKHelp.h"
 
 
 
@@ -265,8 +275,8 @@
     [manager.requestSerializer setValue:[NSString getCurrentDeviceModel] forHTTPHeaderField:@"osInformation"];
     [manager.requestSerializer setValue:@"iOS" forHTTPHeaderField:@"plat"];
     [manager.requestSerializer setValue:timestamp forHTTPHeaderField:@"timestamp"];
-    [manager.requestSerializer setValue:USER_UUID forHTTPHeaderField:@"userId"];
-    [manager.requestSerializer setValue:USER_UUID forHTTPHeaderField:@"uuid"];
+    [manager.requestSerializer setValue:[UserData userInfo].uuid forHTTPHeaderField:@"userId"];
+    [manager.requestSerializer setValue:[UserData userInfo].uuid forHTTPHeaderField:@"uuid"];
     [manager.requestSerializer setValue:@"1.0.0" forHTTPHeaderField:@"version"];
     
     return manager;

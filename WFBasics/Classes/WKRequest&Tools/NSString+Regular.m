@@ -667,7 +667,7 @@
  
  @return getNowTimeTimestamp
  */
-+(NSString *)getNowTimeTimestamp{
++ (NSString *)getNowTimeTimestamp {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     

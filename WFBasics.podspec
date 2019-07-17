@@ -40,12 +40,8 @@ WFBasics是云智充项目的基础组件
   b.source_files    = 'WFBasics/Classes/Category/**/*'
   end
 
-  s.subspec 'Tools' do |c|
-  c.source_files    = 'WFBasics/Classes/Tools/**/*'
-  end
-
-  s.subspec 'WKRequest' do |d|
-  d.source_files    = 'WFBasics/Classes/WKRequest/**/*'
+  s.subspec 'WKRequest&Tools' do |d|
+  d.source_files    = 'WFBasics/Classes/WKRequest&Tools/**/*'
   d.dependency 'AFNetworking'
   d.dependency 'SVProgressHUD'
   end

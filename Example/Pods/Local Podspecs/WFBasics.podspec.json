@@ -29,12 +29,8 @@
       "source_files": "WFBasics/Classes/Category/**/*"
     },
     {
-      "name": "Tools",
-      "source_files": "WFBasics/Classes/Tools/**/*"
-    },
-    {
-      "name": "WKRequest",
-      "source_files": "WFBasics/Classes/WKRequest/**/*",
+      "name": "WKRequest&Tools",
+      "source_files": "WFBasics/Classes/WKRequest&Tools/**/*",
       "dependencies": {
         "AFNetworking": [
 
