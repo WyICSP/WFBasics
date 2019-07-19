@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WFBasics'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'WFBasics基础组件'
 
 # This description is used to generate tags and improve search results.
