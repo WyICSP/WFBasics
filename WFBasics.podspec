@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WFBasics'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'WFBasics基础组件'
 
 # This description is used to generate tags and improve search results.
@@ -38,6 +38,7 @@ WFBasics是云智充项目的基础组件
   
   s.dependency 'AFNetworking'
   s.dependency 'SVProgressHUD'
+  s.dependency 'WYAutoLayout'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
