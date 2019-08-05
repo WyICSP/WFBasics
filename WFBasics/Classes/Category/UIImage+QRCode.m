@@ -9,7 +9,7 @@
 
 @implementation UIImage (QRCode)
 
-+(UIImage *)LX_ImageOfQRFromURL:(NSString *)urlStr codeSize:(CGFloat)codeSize{
++(UIImage *)WY_ImageOfQRFromURL:(NSString *)urlStr codeSize:(CGFloat)codeSize{
     
     if (urlStr ==nil || [urlStr isEqualToString:@""]) {
         return  nil;
