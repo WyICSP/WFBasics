@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "UIImage+QRCode.h"
 #import "UIView+Frame.h"
 #import "WKHelp.h"
 #import "WKSetting.h"
