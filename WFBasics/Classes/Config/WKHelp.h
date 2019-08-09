@@ -26,6 +26,8 @@
 
 //适配高度
 #define KHeight(height) height*ScreenWidth/375.0f
+//适配宽度
+#define KWidth(width) KHeight(width)
 
 //百度地图  fUpYctPLjNGLR77Ni7WIdpYpPsF36hkv
 #define APIKey  @"ef4b045ea93d99c51307da309f0ada76"
