@@ -67,7 +67,6 @@
 #define SKViewsBorder(View,radius,width,color)\
 \
 [View.layer setCornerRadius:(radius)];\
-[View.layer setMasksToBounds:YES];\
 [View.layer setBorderWidth:(width)];\
 [View.layer setBorderColor:[color CGColor]];
 
