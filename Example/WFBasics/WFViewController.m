@@ -8,6 +8,7 @@
 
 #import "WFViewController.h"
 #import "WKRequest.h"
+#import "YFToast.h"
 
 @interface WFViewController ()
 
@@ -24,6 +25,10 @@
         
     }];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [YFToast showMessage:@"啊哈哈哈" inView:self.view];
 }
 
 - (void)didReceiveMemoryWarning
