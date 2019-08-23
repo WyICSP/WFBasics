@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - SVProgressHUD (2.2.5)
-  - WFBasics (0.1.5):
+  - WFBasics (0.1.6):
     - AFNetworking
     - SVProgressHUD
     - WYAutoLayout
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  WFBasics: f685616610b3e5e55cff28850f677a9febf3ec33
+  WFBasics: 45005868f7d29d821995b8f6020a8ca03d588772
   WYAutoLayout: 4acaaa05e0edaf4b5507a1307d46c663defe8e08
 
 PODFILE CHECKSUM: 11a8dda35c00ad3a2eb8f49162be0cefe7c0e70c
