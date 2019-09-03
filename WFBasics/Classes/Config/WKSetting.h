@@ -28,7 +28,7 @@
 //我的 消息 域名 开发
 #define H5_HOST             @"http://dev.jx9n.cn/yzc_business_h5/"
 //趣商城 链接 开发
-#define H5_SHOP_URL         @"http://39.106.62.16/"
+#define H5_SHOP_URL         @"http://47.105.201.37:9531/"
 
 ////老接口域名 测试
 //#define HOST_URL            @"http://test.old.jx9n.cn:8181/api/"
