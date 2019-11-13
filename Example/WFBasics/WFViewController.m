@@ -9,6 +9,7 @@
 #import "WFViewController.h"
 #import "WKRequest.h"
 #import "YFToast.h"
+#import "NSString+Regular.h"
 
 @interface WFViewController ()
 
@@ -19,11 +20,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [WKRequest postWithURLString:@"" parameters:@{} isJson:YES isShowHud:YES success:^(WKBaseModel *baseModel) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+//    [WKRequest postWithURLString:@"" parameters:@{} isJson:YES isShowHud:YES success:^(WKBaseModel *baseModel) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+    NSLog(@"%@",[NSString getProjectName]);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

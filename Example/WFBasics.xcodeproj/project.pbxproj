@@ -538,7 +538,7 @@
 				INFOPLIST_FILE = "WFBasics/WFBasics-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WFBasics_Example;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -554,7 +554,7 @@
 				INFOPLIST_FILE = "WFBasics/WFBasics-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WFBasics_Example;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
