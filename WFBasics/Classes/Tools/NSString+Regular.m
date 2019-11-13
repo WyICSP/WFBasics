@@ -795,12 +795,19 @@
     return deviceModel;
 }
 
-/// 项目名
+/// 项目名 UTF-8 编码
 + (NSString *)getProjectName {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
     NSString *pName = [app_Name stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return pName;
+}
+
+/// APP名字
++ (NSString *)getAppName {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    return app_Name;
 }
 
 
