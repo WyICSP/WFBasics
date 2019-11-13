@@ -287,4 +287,8 @@
  */
 + (NSString *)getCurrentDeviceModel;
 
+
+/// 获取项目名
++ (NSString *)getProjectName;
+
 @end

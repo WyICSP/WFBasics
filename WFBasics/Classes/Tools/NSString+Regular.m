@@ -795,6 +795,13 @@
     return deviceModel;
 }
 
+/// 项目名
++ (NSString *)getProjectName {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    return app_Name;
+}
+
 
 
 @end
