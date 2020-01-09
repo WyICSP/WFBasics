@@ -298,6 +298,6 @@
 /// 向上 四舍五入
 /// @param price 数字
 /// @param position 保留的小数位数
-+ (NSString *)rounding:(double)price afterPoint:(int)position
++ (NSString *)rounding:(double)price afterPoint:(int)position;
 
 @end
