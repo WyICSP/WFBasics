@@ -85,7 +85,7 @@
     
     DLog(@"接口 + 参数:%@-----------%@",urlString,[self dictionTransformationJson:parameters]);
     
-    [manager GET:path parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:path parameters:parameters headers:@{} progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [SVProgressHUD dismiss];
@@ -134,7 +134,9 @@
     NSString *path = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     DLog(@"接口 + 参数:%@-----------%@",urlString,[self dictionTransformationJson:parameters]);
-    [manager POST:path parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    
+    
+    [manager POST:path parameters:parameters headers:@{} progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [SVProgressHUD dismiss];
@@ -183,9 +185,7 @@
     //2.上传文件
     NSString *hostUrl = urlString;
     DLog(@"接口 + 参数:%@-----------%@",urlString,[self dictionTransformationJson:parameters]);
-    [manager POST:hostUrl parameters:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:hostUrl parameters:nil headers:@{} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         NSData *data = UIImageJPEGRepresentation(image, 0.1);
         //上传文件参数
