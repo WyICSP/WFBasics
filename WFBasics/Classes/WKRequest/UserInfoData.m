@@ -27,6 +27,8 @@
         [self setValue:[NSString stringWithFormat:@"%@",dic[@"nickname"]] forKey:@"nickname"];
         [self setValue:[NSString stringWithFormat:@"%@",dic[@"points"]] forKey:@"points"];
         [self setValue:[NSString stringWithFormat:@"%@",dic[@"password"]] forKey:@"password"];
+        [self setValue:[NSString stringWithFormat:@"%@",dic[@"Authorization"]] forKey:@"Authorization"];
+        
     }
     
     return self;

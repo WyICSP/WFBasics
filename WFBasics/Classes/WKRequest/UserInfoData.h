@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *password;
 /**积分*/
 @property (nonatomic, copy) NSString *points;
+/// token
+@property (nonatomic, copy) NSString *Authorization;
 -(instancetype)initWithDictionary:(NSDictionary *)dic;
 NS_ASSUME_NONNULL_END
 @end
