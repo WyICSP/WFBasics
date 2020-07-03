@@ -10,10 +10,10 @@
 
 @interface UserInfoData : NSObject
 NS_ASSUME_NONNULL_BEGIN
-/**公司地址*/
-@property (nonatomic, copy) NSString *companyAddress;
-/**性别*/
-@property (nonatomic, copy) NSString *gender;
+/**账号*/
+@property (nonatomic, copy) NSString *account;
+/**昵称*/
+@property (nonatomic, copy) NSString *userName;
 /**用户充值赠送金额*/
 @property (nonatomic, copy) NSString *giveMoney;
 /**头像*/
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**积分*/
 @property (nonatomic, copy) NSString *points;
 /// token
-@property (nonatomic, copy) NSString *Authorization;
+@property (nonatomic, copy) NSString *token;
 -(instancetype)initWithDictionary:(NSDictionary *)dic;
 NS_ASSUME_NONNULL_END
 @end
